@@ -22,8 +22,9 @@ class JokeDetailViewController: UIViewController,UITableViewDataSource,UITableVi
         tableView.delegate = self
         
         tableView.separatorStyle = .None //去掉下划线
+        tableView.estimatedRowHeight = 180 //cell初始行高
         // 自适应
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension // 自动计算行高
         // Do any additional setup after loading the view.
         // 获取comments
         comments = [Comment]()
@@ -31,7 +32,6 @@ class JokeDetailViewController: UIViewController,UITableViewDataSource,UITableVi
     }
     
     func didLoadComtents(comments : [Comment]){
-        print("commentsCount:\(comments.count)")
         for comment in comments {
             self.comments.append(comment)
         }
@@ -53,7 +53,7 @@ class JokeDetailViewController: UIViewController,UITableViewDataSource,UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.row == 0{
-            let cell = tableView.dequeueReusableCellWithIdentifier(JokeCellIdentify, forIndexPath: indexPath) as! JokeDetailCell
+           let cell = tableView.dequeueReusableCellWithIdentifier(JokeCellIdentify, forIndexPath: indexPath) as! JokeDetailCell
             cell.drawCell(joke)
             return cell
         }else{
